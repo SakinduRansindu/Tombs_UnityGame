@@ -956,7 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 40197163}
   speed: 1
-  xoffset: 1
+  xoffset: 0.33
   yoffset: 1
 --- !u!1 &619394800
 GameObject:
@@ -1112,9 +1112,13 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4475151048734775786, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5288414717697953904, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
       propertyPath: m_Size.x
-      value: 57.6
+      value: 57.81
       objectReference: {fileID: 0}
     - target: {fileID: 5288414717697953904, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
       propertyPath: m_DrawMode
@@ -1123,6 +1127,14 @@ PrefabInstance:
     - target: {fileID: 5288414717697953904, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
       propertyPath: m_SortingOrder
       value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288414717697953904, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+      propertyPath: m_SpriteTileMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5288414717697953904, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+      propertyPath: m_AdaptiveModeThreshold
+      value: 0.404
       objectReference: {fileID: 0}
     - target: {fileID: 5725325007907023477, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
       propertyPath: m_Size.x
@@ -1147,6 +1159,10 @@ PrefabInstance:
     - target: {fileID: 6064948357354029452, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
       propertyPath: m_SortingOrder
       value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710555888685781739, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9058615745961480742, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
       propertyPath: m_Layer
@@ -1213,6 +1229,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 57.558655, y: 0.83246017}
   m_EdgeRadius: 0
+--- !u!1 &1371416450 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 713691260084152520, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+  m_PrefabInstance: {fileID: 680878023}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1811759834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4525622596244792806, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+  m_PrefabInstance: {fileID: 680878023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1942471731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
@@ -1230,6 +1256,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046eddeb9f0878e46953c42f338aa705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camOBJ: {fileID: 519420028}
+  layer1: {fileID: 1811759834}
+  layer2: {fileID: 2110128059}
+  layer3: {fileID: 1371416450}
+  layer4: {fileID: 1107644421}
+  layer1XSpeed: 1
+  layer2XSpeed: 0.8
+  layer3XSpeed: 0.4
+  layer4XSpeed: 0
+  layer1YSpeed: 1
+  layer2YSpeed: 0.8
+  layer3YSpeed: 0.4
+  layer4YSpeed: 0
 --- !u!1 &2077153246
 GameObject:
   m_ObjectHideFlags: 0
@@ -1261,6 +1300,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 40197167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2110128059 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6239708519523979616, guid: 2521f39cc04b0b042ba882090993f160, type: 3}
+  m_PrefabInstance: {fileID: 680878023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
