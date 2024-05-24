@@ -32,7 +32,7 @@ ScriptedImporter:
     sRGBTexture: 1
     spriteMode: 2
     spriteExtrude: 1
-    spriteMeshType: 1
+    spriteMeshType: 0
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
     spritePixelsToUnits: 100
@@ -105,7 +105,7 @@ ScriptedImporter:
       y: 1330
       width: 1920
       height: 90
-    spriteID: 860844b614d1e4e45abacfe31aa6ea43
+    spriteID: 95a6d2f8ff3c5024cbca76ebc40fbeeb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -126,7 +126,7 @@ ScriptedImporter:
       y: 1149
       width: 1920
       height: 173
-    spriteID: 0001dc1c8ca89cc4684ad958bc40a411
+    spriteID: 13d29a1c19459d44f93f82aaaf1c7ba0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -147,7 +147,7 @@ ScriptedImporter:
       y: 896
       width: 1920
       height: 245
-    spriteID: f7e72a9fca48d434987457937542bf2a
+    spriteID: 46a5285f70400b84f8dc9705af5d1e11
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -157,27 +157,6 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 896}
     spritePosition: {x: 0, y: 0}
-  - name: moon
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 1932
-      y: 1149
-      width: 111
-      height: 124
-    spriteID: 1c54638bef62b554086dab4a3fcd3861
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 1932, y: 1149}
-    spritePosition: {x: 420, y: 748}
   - name: star
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -189,7 +168,7 @@ ScriptedImporter:
       y: 4
       width: 1920
       height: 884
-    spriteID: 058ce05232bb1374c97d82774ac4152c
+    spriteID: 121bf8d002d3d6746ad30785d2047180
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -214,7 +193,43 @@ ScriptedImporter:
     characterGroups: []
     pivot: {x: 0, y: 0}
     boneReadOnly: 0
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: WebGL
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   mosaicLayers: 1
   characterMode: 1
   documentPivot: {x: 0, y: 0}
@@ -239,8 +254,8 @@ ScriptedImporter:
     spriteName: topGround
     isGroup: 0
     parentIndex: -1
-    spriteID: 860844b614d1e4e45abacfe31aa6ea43
-    layerID: 88
+    spriteID: 95a6d2f8ff3c5024cbca76ebc40fbeeb
+    layerID: 102
     mosaicPosition: {x: 4, y: 1330}
     flatten: 0
     isImported: 1
@@ -249,8 +264,8 @@ ScriptedImporter:
     spriteName: midGround
     isGroup: 0
     parentIndex: -1
-    spriteID: 0001dc1c8ca89cc4684ad958bc40a411
-    layerID: 94
+    spriteID: 13d29a1c19459d44f93f82aaaf1c7ba0
+    layerID: 101
     mosaicPosition: {x: 4, y: 1149}
     flatten: 0
     isImported: 1
@@ -259,19 +274,9 @@ ScriptedImporter:
     spriteName: backGround
     isGroup: 0
     parentIndex: -1
-    spriteID: f7e72a9fca48d434987457937542bf2a
-    layerID: 86
+    spriteID: 46a5285f70400b84f8dc9705af5d1e11
+    layerID: 100
     mosaicPosition: {x: 4, y: 896}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: moon
-    spriteName: moon
-    isGroup: 0
-    parentIndex: -1
-    spriteID: 1c54638bef62b554086dab4a3fcd3861
-    layerID: 96
-    mosaicPosition: {x: 1932, y: 1149}
     flatten: 0
     isImported: 1
     isVisible: 1
@@ -279,8 +284,8 @@ ScriptedImporter:
     spriteName: star
     isGroup: 0
     parentIndex: -1
-    spriteID: 058ce05232bb1374c97d82774ac4152c
-    layerID: 82
+    spriteID: 121bf8d002d3d6746ad30785d2047180
+    layerID: 98
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1

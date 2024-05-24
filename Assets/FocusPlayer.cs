@@ -19,7 +19,7 @@ public class FocusPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 plPos = rb.position;
         plPos.z = transform.position.z;

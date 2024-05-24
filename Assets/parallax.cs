@@ -30,6 +30,11 @@ public class parallax : MonoBehaviour
     float layer3YSpeed = 1.0f;
     [SerializeField]
     float layer4YSpeed = 1.0f;
+
+    public float adjx = 1.3f;
+    public float adjY = 1.3f;
+
+
     Camera cam;
 
     private Vector3 prevCampos;
@@ -46,7 +51,8 @@ public class parallax : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       cam = camOBJ.GetComponent<Camera>();
+        //cam = camOBJ.GetComponent<Camera>();
+        cam = Camera.main;
        prevCampos = cam.transform.position;
         Sprite[] sp= new Sprite[4];
         sp[0] = layer1.GetComponent<SpriteRenderer>().sprite;
@@ -77,7 +83,7 @@ public class parallax : MonoBehaviour
 }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         campos = cam.transform.position;
         camdiff =  campos - prevCampos;
@@ -89,7 +95,7 @@ public class parallax : MonoBehaviour
         parallaxLayer(layer3,layer3XSpeed,layer3YSpeed,l3_dim);
         parallaxLayer(layer4,layer4XSpeed,layer4YSpeed,l4_dim);
 
-
+        
 
         prevCampos = campos;
         
@@ -100,9 +106,10 @@ public class parallax : MonoBehaviour
         Vector3 layerPos = layer.transform.position;
         layerPos = new Vector3(layerPos.x + camdiff.x * xspeed, layerPos.y + camdiff.y * yspeed, layerPos.z);
 
-        if (campos.x>diamentions.x+layerPos.x)
+        if (Mathf.Abs(campos.x - layerPos.x) > diamentions.x)
         {
-            layerPos.x += diamentions.x;
+            float offsetpos = (campos.x - layerPos.x)%diamentions.x;
+            layerPos.x = campos.x+offsetpos;
             Debug.Log(layer.name+" shifted just now");
         }
         
