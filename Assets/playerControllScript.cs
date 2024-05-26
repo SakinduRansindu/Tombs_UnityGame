@@ -53,9 +53,10 @@ public class playerControllScript : MonoBehaviour
                 if (!(rb.velocity.y > 0.001) && Math.Abs(lastJumpedFrame - Time.frameCount) * Time.fixedDeltaTime > 1.5)
                 {
                     isJumped = false;
+                    anim.SetBool("isJump", false);
                     Debug.Log("not Jumping");
                 }
-                else if (!(rb.velocity.y > 0.001))
+                else if (!(rb.velocity.y > 0.00001) && Math.Abs(lastJumpedFrame - Time.frameCount) * Time.fixedDeltaTime > 0.6)
                 {
                     anim.SetBool("isJump", false);
                 }
@@ -103,11 +104,11 @@ public class playerControllScript : MonoBehaviour
                     }
                 }
             }
-            else
+        }
+        if(XFourcedToChar && groundCheckController.isInAir)
             {
                 floatMove(isBoosted);
             }
-        }
 
 
         if (YFourcedToChar && !groundCheckController.isInAir)
@@ -210,12 +211,12 @@ public class playerControllScript : MonoBehaviour
         if (isBoosted)
         {
             Debug.Log("floatmove boost");
-            speedXtmp = moveX * speedX * 0.8f * Time.deltaTime;
+            speedXtmp = moveX * speedX * 1.8f * Time.deltaTime;
         }
         else
         {
             Debug.Log("floatmove");
-            speedXtmp = moveX * speedX * 0.5f * Time.deltaTime; 
+            speedXtmp = moveX * speedX * 1.5f * Time.deltaTime; 
         }
     }
 

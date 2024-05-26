@@ -724,8 +724,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gc: {fileID: 143512578}
   speedX: 140
-  speedY: 600
-  VELO_STEPS: 200
+  speedY: 800
+  VELO_STEPS: 150
 --- !u!4 &40197167 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: c969e7c87c1fbf043ae65e1ea68e2b32, type: 3}
