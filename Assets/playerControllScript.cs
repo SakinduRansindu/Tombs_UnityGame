@@ -15,14 +15,18 @@ public class playerControllScript : MonoBehaviour
     private float boost;
     private Animator anim;
     private groundCheck groundCheckController;
-    private bool canJump = true;
+    private bool isJumped = false;
     private bool canFly = false;
     private bool isFacedToRight=true;
+    private int lastJumpedFrame = 0;
 
 
     public float speedX = 1f;
     public float speedY = 1f;
     public float VELO_STEPS = 10f;
+
+    private float speedXtmp ;
+    private float speedYtmp ;
 
     void Awake()
     {
@@ -40,103 +44,179 @@ public class playerControllScript : MonoBehaviour
 
     }
 
+    private void LateUpdate()
+    {
+        if (isJumped)
+        {
+            if (!groundCheckController.isInAir)
+            {
+                if (!(rb.velocity.y > 0.001) && Math.Abs(lastJumpedFrame - Time.frameCount) * Time.fixedDeltaTime > 1.5)
+                {
+                    isJumped = false;
+                    Debug.Log("not Jumping");
+                }
+                else if (!(rb.velocity.y > 0.001))
+                {
+                    anim.SetBool("isJump", false);
+                }
+            }
+
+        }
+    }
+
     private void FixedUpdate()
     {
-        float speedXtmp = rb.velocity.x;
-        float speedYtmp = rb.velocity.y;
+        speedXtmp = rb.velocity.x;
+        speedYtmp = rb.velocity.y;
         // Debug.Log(groundCheckController.isGroundTouched);
+        
+        bool XFourcedToRight = moveX > 0.00;
+        bool XFourcedToLeft = moveX < -0.00;
+        bool XFourcedToChar = XFourcedToLeft || XFourcedToRight;
+        bool YFourcedToUp = moveY > 0.00;
+        bool YFourcedToDown = moveY < -0.00;
+        bool YFourcedToChar = YFourcedToUp || YFourcedToDown;
+        bool isBoosted = boost > 0;
+
+
+
+
+
+        if (XFourcedToChar && !groundCheckController.isInAir) {
+            if (!groundCheckController.isInAir)
+            {
+                if (groundCheckController.isStepsTouched)
+                {
+                    anim.SetBool("isSteps", true);
+                    steps();
+                }
+                else
+                {
+                    anim.SetBool("isSteps", false);
+                    if (isBoosted)
+                    {
+                        run();
+                    }
+                    else
+                    {
+                        walk();
+                    }
+                }
+            }
+            else
+            {
+                floatMove(isBoosted);
+            }
+        }
+
+
+        if (YFourcedToChar && !groundCheckController.isInAir)
+        {
+            if(YFourcedToUp)
+            {
+                if (!isJumped)
+                {
+                    anim.SetBool("isJump", true);
+                    StartCoroutine(jump());
+
+                }
+            }
+        }
+        
+        
+
         
 
 
-        if ((moveX > 0.00 || moveX < -0.00) && !groundCheckController.isInAir) {
-            anim.SetBool("isMovingX", true);
-            speedXtmp = moveX * speedX * Time.fixedDeltaTime;
-            if(boost<-0.00 || boost>0.00)
-            {
-                speedXtmp *= 2;
-            }
-            if (groundCheckController.isStepsTouched)
-            {
-                anim.SetBool("isSteps",true);
-                if (!groundCheckController.slope)
-                {
-                    speedYtmp = VELO_STEPS*Time.fixedDeltaTime;
-                }
-            }
-            else
-            {
-                anim.SetBool("isSteps",false);
-            }
-
-        }
-        else if(!groundCheckController.isInAir)
-        {
-            anim.SetBool("isMovingX", false);
-            speedXtmp = 0f;
-        }
-        else
-        {
-            anim.SetBool("isMovingX", false);
-        }
-
-        if ((moveY > 0.00 || moveY < -0.00) && !groundCheckController.isInAir)
-        {
-            if (moveY > 0)
-            {
-                if (canJump) {
-                    // on ground and need to go up - jump
-                    Debug.Log("jump");
-                    anim.SetBool("isMovingY", true);
-                    canJump = false;
-                    canFly = true;
-                    speedYtmp = speedY * Time.fixedDeltaTime;
-                }
-            }
-            else
-            {
-                // on ground and need to go down - crouch
-                Debug.Log("crouch");
-                anim.SetBool("isMovingY", false);
-                canJump = true;
-            }
-        }
-        else if(moveY>0.00 || moveY<-0.00)
-        {
-            if (moveY > 0.00)
-            {
-                if (canFly)
-                {
-                    // not on the ground and need to go up - transform to fly
-                    Debug.Log("fly");
-                    canFly = false;
-                }
-            }
-            else
-            {
-                // not on the ground and need to go down - fall
-                Debug.Log("fall");
-            }
-        }
-        else if (!groundCheckController.isInAir) {
-            anim.SetBool("isMovingY", false);
-            canJump = true;
-            canFly = false;
-        }
 
 
         rb.velocity = new Vector2(speedXtmp, speedYtmp);
         anim.SetFloat("speedX", speedXtmp);
         anim.SetFloat("speedY", speedYtmp);
-        if (speedXtmp > 0 && !isFacedToRight)
+
+        if (Math.Abs(speedXtmp) > 0.001)
+        {
+            anim.SetBool("isMovingX", true);
+        }
+        else
+        {
+        anim.SetBool("isMovingX", false);
+        }
+
+        if (Math.Abs(speedYtmp) > 0.001)
+        {
+            anim.SetBool("isMovingY", true);
+        }
+        else
+        {
+            anim.SetBool("isMovingY", false);
+        }
+
+        if (speedXtmp > 0.001 && !isFacedToRight)
         {
             flipCharacter();
         }
-        else if(speedXtmp < 0 && isFacedToRight)
+        else if(speedXtmp < -0.001 && isFacedToRight)
         {
             flipCharacter();
         }
 
         //Debug.Log(groundCheckController.isGroundTouched);
+    }
+
+    private void walk()
+    {
+        Debug.Log("walking");
+        speedXtmp = moveX * speedX * Time.deltaTime;
+    }
+
+    private void run()
+    {
+        Debug.Log("running");
+        speedXtmp = moveX * speedX * 2 * Time.deltaTime;
+    }
+
+    private void steps()
+    {
+            if (groundCheckController.slopeAtX_Plus ^ isFacedToRight){
+                anim.SetBool("isSlope", false);
+                speedYtmp = VELO_STEPS * Time.deltaTime;
+                speedXtmp = moveX * speedX * 0.8f * Time.deltaTime;
+                Debug.Log("step up");
+            }
+            else{
+                anim.SetBool("isSlope", true);
+                speedXtmp = moveX * speedX * 0.5f * Time.deltaTime;
+                Debug.Log("step down");
+            }
+        
+
+
+    }
+
+    private IEnumerator jump()
+    {
+        Debug.Log("jumping wait");
+        isJumped = true;
+        lastJumpedFrame = Time.frameCount;
+        yield return new WaitForSeconds(0.5f);
+        Vector2 v = rb.velocity;
+        v.y = speedY * Time.deltaTime;
+        rb.velocity = v;
+        Debug.Log("jumping");
+    }
+    private void floatMove(bool isBoosted)
+    {
+        if (isBoosted)
+        {
+            Debug.Log("floatmove boost");
+            speedXtmp = moveX * speedX * 0.8f * Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("floatmove");
+            speedXtmp = moveX * speedX * 0.5f * Time.deltaTime; 
+        }
     }
 
     private void flipCharacter()

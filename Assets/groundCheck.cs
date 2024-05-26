@@ -10,7 +10,7 @@ public class groundCheck : MonoBehaviour
     public bool isGroundTouched = false;
     public bool isStepsTouched = false;
     public bool isInAir = true;
-    public bool slope = false;
+    public bool slopeAtX_Plus = false;
     void Start()
     {
         
@@ -33,11 +33,11 @@ public class groundCheck : MonoBehaviour
             isStepsTouched=true;
             if (collision.gameObject.tag == "UP")
             {
-                slope = false;
+                slopeAtX_Plus = false;
             }
             else
             {
-                slope = true;
+                slopeAtX_Plus = true;
             }
         }
         isInAir = (!(isGroundTouched || isStepsTouched));
